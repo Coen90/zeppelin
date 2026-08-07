@@ -176,7 +176,7 @@ public class ZeppelinServer implements AutoCloseable {
         new AbstractBinder() {
           @Override
           protected void configure() {
-            bind(storage).to(ConfigStorage.class);
+            bind(storage).to(ConfigStorage.class); // hk2 로 변경하는 작업도 할 수 있다
             bindAsContract(PluginManager.class).in(Singleton.class);
             bind(GsonNoteParser.class).to(NoteParser.class).in(Singleton.class);
             bindAsContract(InterpreterFactory.class).in(Singleton.class);
@@ -199,7 +199,7 @@ public class ZeppelinServer implements AutoCloseable {
             bindAsContract(NotebookService.class).in(Singleton.class);
             bindAsContract(JobManagerService.class).in(Singleton.class);
             bindAsContract(Notebook.class).in(Singleton.class);
-            bindAsContract(NotebookServer.class)
+            bindAsContract(NotebookServer.class) // 웹소켓 담당하는애
                 .to(AngularObjectRegistryListener.class)
                 .to(RemoteInterpreterProcessListener.class)
                 .to(ApplicationEventListener.class)

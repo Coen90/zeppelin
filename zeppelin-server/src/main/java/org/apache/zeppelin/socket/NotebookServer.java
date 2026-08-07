@@ -273,7 +273,7 @@ public class NotebookServer implements AngularObjectRegistryListener,
     onMessage(conn, msg);
   }
 
-  public void onMessage(NotebookSocket conn, String msg) {
+  public void onMessage(NotebookSocket conn, String msg) { // 실제로 프론트와 서버가 데이터를 주고받는 곳
     try {
       Message receivedMessage = deserializeMessage(msg);
       if (receivedMessage.op != OP.PING) {
@@ -1526,7 +1526,7 @@ public class NotebookServer implements AngularObjectRegistryListener,
         });
   }
 
-  private void runParagraph(NotebookSocket conn,
+  private void runParagraph(NotebookSocket conn, // 제플린 실행 단위 == paragraph
                             ServiceContext context,
                             Message fromMessage) throws IOException {
     String paragraphId = (String) fromMessage.get("id");
